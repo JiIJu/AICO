@@ -1,0 +1,65 @@
+{% extends 'base.html' %} 
+{%load static%}
+
+{% block contents %}
+<h1>live</h1>
+<h3>Camera Live</h3>
+<!-- Your Connection -->
+<p id='position'>{{data.1}}</p>
+
+<img
+  id="img1"
+  style="-webkit-user-select: none"
+  src="{% url 'record:stream2' %}"
+/>
+<br>
+
+<button onclick="imgToggle()">영상촬영</button>
+<div id="goodbad">
+  <h4>time :{{bad}}</h4>
+  <h4>ans : {{camans}}</h4>
+  <h4>camgood : {{camgood}}</h4>
+  <h4>cambad : {{cambad}}</h4>
+</div>
+
+<div id="times">
+
+</div>
+<a href="{% url 'record:exside' %}">푸쉬업 시작</a>
+<a href="{% url 'record:exfront' %}">스쿼트 시작</a>
+<a href="{% url 'record:finish' %}">운동종료</a>
+{% endblock contents %} 
+
+
+{% block script %}
+<script>
+  setInterval(function () {
+    $("#goodbad").load(location.href + " #goodbad");
+  }, 500);
+
+  {% comment %} setInterval(function () {
+    $("#times").load(location.href + " #times");
+  }, 1000);
+   {% endcomment %}
+  {% comment %} setInterval(function () {
+    $("#position").load(location.href + " #position");
+  }, 500); {% endcomment %}
+
+  var cnt = 1;
+  function imgToggle() {
+    var img1 = document.getElementById("img1");
+    if (cnt % 2 == 1) {
+      img1.src = "{% url 'record:stream2' %}";
+    } else {
+      img1.src = "{% static 'mainimage.png' %}";
+    }
+    cnt++; // cnt 변수 1씩 증가 시키기
+  }
+
+</script>
+{% endblock script %}
+
+
+
+
+

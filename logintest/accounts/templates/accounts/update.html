@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>시리얼넘버 등록</h1>
+{% comment %} <form action="{% url 'accounts:update' %}" method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit">
+</form> {% endcomment %}
+<form method="post" class="post-form my-3">
+  {% csrf_token %}
+<div class="form-group" style="margin:auto;width:30%;">
+  
+  <label for="last_name">시리얼넘버 : </label>
+  <textarea class="form-control" name="last_name"
+            id="last_name" rows="1">{{ form.last_name.value|default_if_none:'' }}</textarea>
+  <input type="submit" class="btn btn-outline-secondary">
+</div>
+</form>
+
+{% endblock content %}

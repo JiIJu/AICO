@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+
+{% block content %}
+
+
+<form method="POST">
+  {% csrf_token %}
+  <button type="submit" style="border:none; background-color:transparent;">
+    <img src="{% static 'record/img/kakao_login.png'  %}" alt=""></button>
+</form>
+
+<br><br>
+
+{% endblock %}

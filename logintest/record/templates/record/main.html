@@ -1,0 +1,32 @@
+{% extends 'base.html' %} {% load static %} {% block contents %}
+<main>
+  <a href="{% url 'accounts:update' %}"
+    ><button class="btn btn-outline-secondary" id="serial">시리얼넘버 등록하기</button></a
+  >
+    {% if check %}
+        <a href="{%url 'record:video'%}"><button type="button" id="modal_btn" class="btn btn-outline-secondary">기기연결하기</button></a>
+    {% else %} 
+        <a href="{%url 'record:videoclose'%}"><button class="btn btn-outline-secondary">서버연결해제</button></a>
+    {% endif %}
+    {{check}}
+
+
+  <br /><br /><br />
+  <img src="{% static 'mainimage.png' %}" />
+</main>
+
+<style>
+  main {
+    height: 70vh;
+  }
+</style>
+
+<script>
+  const myModal = document.getElementById("myModal");
+  const myInput = document.getElementById("myInput");
+
+  myModal.addEventListener("shown.bs.modal", () => {
+    myInput.focus();
+  });
+</script>
+{% endblock contents %}
