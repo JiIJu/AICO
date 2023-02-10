@@ -54,7 +54,7 @@ window.onload = function () {
     }],
 
   });
-  $.getJSON("http://192.168.100.105:8000/record/jsonrecord/", function(data) {
+  $.getJSON("http://127.0.0.1:8000/record/jsonrecord/", function(data) {
     data1 = Object.keys(data.myrecord["스쿼트"])
     data2 = Object.keys(data.myrecord["푸쉬업"])
     data3 = Object.keys(data.myrecord["런지"])

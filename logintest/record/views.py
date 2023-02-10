@@ -10,28 +10,53 @@ import datetime
 
 from django.http import StreamingHttpResponse
 from .video import VideoCamera
+from .userdata import Userdata
 
 # Create your views here.
 # cam = VideoCamera()
 
-check = 1
 
-def videoclose(request):
-    global check
+# 메인페이지 로그인후 진입
+@login_required
+def main(request):
+    return render(request, 'record/main.html')
+
+
+# 기기관리
+@login_required
+def regist(request,pk):
+    try: # globals()['user_{}'.format(pk)].check:
+        context = {
+            'check' : globals()['user_{}'.format(pk)].check,
+        }
+    except:
+        context = {
+            'check' : 0,
+        }
+    return render(request, 'record/regist.html', context)
+
+
+def videoclose(request, pk):
     cam.server_socket.close()
-    check = 1
-    return redirect('record:main')
+    globals()['user_{}'.format(pk)].check = 0
+    return redirect('record:regist',pk=pk)
 
 # webcam 재생함수
-def video(request):
-    global cam, check
-    check = 0
-    cam = VideoCamera()
+def video(request, pk):
+    global cam
+    try:
+        cam = VideoCamera()
+    except:
+        return redirect('record:main')
+    # if globals()['user_{}'.format(pk)]:
+    #     globals()['user_{}'.format(pk)].check = 0
+    # else:
+    globals()['user_{}'.format(pk)] = Userdata()
     cam.good = 0
     cam.bad = 0
     cam.ans = 0
     cam.data=0
-    return redirect('record:main')
+    return redirect('record:regist',pk=pk)
 
 def gen(camera):
 	while True:
@@ -44,9 +69,6 @@ def stream2(request):
     except:  # This is bad! replace it with proper handling
         pass
 
-#에러 페이지
-def page404(request):
-    return render(request, 'record/page404.html')
 
 
 
@@ -54,21 +76,17 @@ def page404(request):
 @login_required
 def delete(request, pk):
     record = get_object_or_404(Record,pk=pk)
-    if record.user==request.user:    
-        record.delete()
-        return redirect('record:chart')
+    if record.user==request.user:
+        if record:    
+            record.delete()
+            return redirect('record:chart')
     else:
-        return redirect('record:page404')
+        return redirect('record:404')
 
+#에러 페이지
+def page404(request):
+    return render(request, 'record/page404.html')
 
-# 메인페이지 로그인후 진입
-@login_required
-def main(request):
-    global check
-    context = {
-        'check' : check,
-    }
-    return render(request, 'record/main.html',context)
 
 
 
@@ -79,8 +97,8 @@ def chart(request):
     records2 = []
     for i in records:
         if i['user_id'] == request.user.pk:
-            if i['good']==0 and i['bad']==0:
-                b=0
+            if i['good']==0 and i['bad']==0: # b = 수행도
+                b=0 
             else:
                 b = 100*i['good'] / (i['good']+i['bad'])
                 b = round(b,2)
@@ -143,7 +161,7 @@ def create(request):
             record = form.save(commit=False)
             record.user = request.user
             record.save()
-            return redirect('record:main')
+            return redirect('record:chart')
     else:
         form = RecordForm()
     context = {
@@ -151,16 +169,15 @@ def create(request):
     }
     return render(request, 'record/create.html', context)
 
-good, bad = 0, 0
+bad = 0
 # 실시간 운동영상
 @login_required
 def live(request):
-    global good,bad
-    # ans = cam.get_ans()
+
+    global bad
     bad +=0.5
     
     context = {
-        'good':good,
         'bad':bad,
         'camgood' : cam.good,
         'cambad' : cam.bad,
@@ -168,23 +185,21 @@ def live(request):
         'data':cam.data,
     }
     return render(request, 'record/live.html', context)
-# cam.get_msg()
-
 
 
 
 #푸쉬업(측면) 시작
 def exside(request):
-    global exercise_kind, good, bad
+    global exercise_kind, bad
     exercise_kind = '푸쉬업'
-    good, bad, cam.good, cam.bad, cam.ans = 0, 0, 0, 0, 0
+    bad, cam.good, cam.bad, cam.ans = 0, 0, 0, 0
     return redirect('record:live')
 
 #팔벌려 높이 뛰기(전면) 시작
 def exfront(request):
     global exercise_kind, good, bad
     exercise_kind = '스쿼트'
-    good, bad, cam.good, cam.bad, cam.ans = 0, 0, 0, 0, 0
+    bad, cam.good, cam.bad, cam.ans = 0, 0, 0, 0
     return redirect('record:live')
 
 #운동종료
@@ -208,7 +223,7 @@ def finish(request):
         bad = a['bad'],
         user = request.user,
     ).save()
-    good, bad, cam.good, cam.bad, cam.ans = 0, 0, 0, 0, 0
+    bad, cam.good, cam.bad, cam.ans = 0, 0, 0, 0
     return redirect('record:live')
 
 

@@ -5,6 +5,7 @@ app_name = 'record'
 
 urlpatterns = [
     path('', views.main, name='main'),
+    path('regist/<int:pk>', views.regist, name='regist'),
     path('chart/',views.chart,name='chart'),
     path('live/',views.live,name='live'),
     path('totalrecord/',views.totalrecord, name='totalrecord'),
@@ -15,8 +16,8 @@ urlpatterns = [
     path('page404/',views.page404,name='page404'),
     path('finish/',views.finish,name='finish'),
     path('jsonrecord/',views.jsonrecord,name='jsonrecord'),
-    path('video/',views.video,name='video'),
-    path('videoclose/',views.videoclose,name='videoclose'),
+    path('video/<int:pk>/',views.video,name='video'),
+    path('videoclose/<int:pk>/',views.videoclose,name='videoclose'),
     path('exside/',views.exside,name='exside'),
     path('exfront/',views.exfront,name='exfront'),
 ]

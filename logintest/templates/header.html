@@ -23,7 +23,6 @@
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="{% url 'record:chart'%}">전체기록</a>
               </li>
-
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="{% url 'record:live'%}">운동시작</a>
               </li>
@@ -35,6 +34,9 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="{% url 'record:deepcreate'%}">자동기록</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'record:regist' user.pk%}">기기관리</a>
               </li>
               {% endif %} 
             </ul>

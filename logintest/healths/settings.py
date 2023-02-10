@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-mte%&feg&8eez^^h6y-ougsoi+$rgdy+g5r8qunp^$j)7ndv!_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.100.105']
+ALLOWED_HOSTS = ['192.168.100.105','127.0.0.1','192.168.100.106']
 
 
 # Application definition
@@ -143,7 +143,7 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-SITE_ID =3
+SITE_ID =6
 
 ##
 AUTHENTICATION_BACKENDS = (
