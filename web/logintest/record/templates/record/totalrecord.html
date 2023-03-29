@@ -1,0 +1,86 @@
+{% extends 'base.html' %} {% block contents %}
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.stock.min.js"></script>
+<script type="text/javascript">
+window.onload = function () {
+  var dataPoints1 = [], dataPoints2 = [],  dataPoints3 = [];
+  var stockChart = new CanvasJS.StockChart("chartContainer",{
+    theme: "light2",
+    animationEnabled: true,
+    title:{
+      text:"운동기록"
+    },
+//    subtitles: [{
+//      text: "total record"
+//    }],
+    charts: [{
+      axisY: {
+        title: "운동 횟수"
+      },
+      toolTip: {
+        shared: true
+      },
+      legend: {
+            cursor: "pointer",
+            itemclick: function (e) {
+              if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible)
+                e.dataSeries.visible = false;
+              else
+                e.dataSeries.visible = true;
+              e.chart.render();
+            }
+        },
+      data: [{
+        showInLegend: true,
+        name: "스쿼트",
+        yValueFormatString: "#,##0",
+        xValueType: "dateTime",
+        dataPoints : dataPoints1
+      },{
+        showInLegend: true,
+        name: "푸쉬업",
+        yValueFormatString: "#,##0",
+        dataPoints : dataPoints2
+      },{
+        showInLegend: true,
+        name: "런지",
+        yValueFormatString: "#,##0",
+        dataPoints : dataPoints3
+      }]
+    }],
+
+  });
+  $.getJSON("http://192.168.100.106:8000/record/jsonrecord/", function(data) {
+    data1 = Object.keys(data.myrecord["스쿼트"])
+    data2 = Object.keys(data.myrecord["푸쉬업"])
+    data3 = Object.keys(data.myrecord["런지"])
+    for(var i = 0; i < data1.length; i++){
+      dataPoints1.push({x: new Date(data1[i]), y: Number(data.myrecord["스쿼트"][data1[i]])});
+    }
+    for(var i = 0; i < data2.length; i++){
+      dataPoints2.push({x: new Date(data1[i]), y: Number(data.myrecord["푸쉬업"][data1[i]])});
+    }
+    for(var i = 0; i < data3.length; i++){
+      dataPoints3.push({x: new Date(data1[i]), y: Number(data.myrecord["런지"][data1[i]])});
+    }
+    stockChart.render();
+  });
+}
+</script>
+</head>
+<body>
+  
+<div id="chartContainer" style="height: 750px; width: 65%; margin:auto;"></div>
+
+{% comment %} 넘어오는 json 파일 확인 {% endcomment %}
+{% comment %} <a href="{%url 'record:jsonrecord'%}">json</a> {% endcomment %}
+</body>
+</html>
+
+<br>
+<hr>
+{% endblock %}

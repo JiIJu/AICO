@@ -1,0 +1,26 @@
+{% extends 'base.html' %} {% load static %} {% block contents %}
+<main>
+  <br><br>
+  <a href="{% url 'accounts:update' %}"
+    ><button class="btn btn-outline-secondary" id="serial">시리얼넘버 등록하기</button></a
+  >
+    {% if check %}
+      <a href="{%url 'record:videoclose' user.id%}"><button class="btn btn-outline-secondary">서버연결해제</button></a>
+    {% else %} 
+       <a href="{%url 'record:video' user.id%}"><button type="button" id="modal_btn" class="btn btn-outline-secondary">기기연결하기</button></a>
+    {% endif %}
+    {% comment %} <p>pk : {{user.id}}</p>
+    <p>check : {{ check}} </p> {% endcomment %}
+  <img src="{% static 'mainimage.png' %}" />
+</main>
+
+<style>
+  main {
+    height: 70vh;
+  }
+</style>
+
+<script>
+
+</script>
+{% endblock contents %}

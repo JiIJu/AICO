@@ -1,0 +1,243 @@
+[
+    {
+        "model": "record.record",
+        "pk": 1, 
+        "fields": {
+            "exercise": "스쿼트",
+            "count": "42",
+            "time": "62",
+            "date": "2023-01-13",
+            "good": "12",
+            "bad": "8"
+        }
+    },
+    {
+        "model": "record.record",
+        "pk": 2,
+        "fields": {
+            "exercise": "푸쉬업",
+            "count": "24",
+            "time": "66",
+            "date": "2023-01-13",
+            "good": "9",
+            "bad": "5"
+        }
+    },
+    {
+        "model": "record.record",
+        "pk": 3,
+        "fields": {
+            "exercise": "스쿼트",
+            "count": "35",
+            "time": "41",
+            "date": "2023-01-13",
+            "good": "10",
+            "bad": "7"
+        }
+    },
+    {
+        "model": "record.record",
+        "pk": 4,
+        "fields": {
+            "exercise": "스쿼트",
+            "count": "33",
+            "time": "53",
+            "date": "2023-01-14",
+            "good": "20",
+            "bad": "6"
+        }
+    },
+    {
+        "model": "record.record",
+        "pk": 5,
+        "fields": {
+            "exercise": "푸쉬업",
+            "count": "21",
+            "time": "43",
+            "date": "2023-01-14",
+            "good": "6",
+            "bad": "2"
+        }
+    },
+    {
+        "model": "record.record",
+        "pk": 6,
+        "fields": {
+            "exercise": "푸쉬업",
+            "count": "25",
+            "time": "35",
+            "date": "2023-01-14",
+            "good": "9",
+            "bad": "1"
+        }
+    },
+    {
+        "model": "record.record",
+        "pk": 7,
+        "fields": {
+            "exercise": "스쿼트",
+            "count": "56",
+            "time": "86",
+            "date": "2023-01-14",
+            "good": "18",
+            "bad": "8"
+        }
+    },
+    {
+        "model": "record.record",
+        "pk": 8,
+        "fields": {
+            "exercise": "푸쉬업",
+            "count": "44",
+            "time": "76",
+            "date": "2023-01-15",
+            "good": "5",
+            "bad": "3"
+        }
+    },
+    {
+        "model": "record.record",
+        "pk": 9,
+        "fields": {
+            "exercise": "스쿼트",
+            "count": "32",
+            "time": "64",
+            "date": "2023-01-15",
+            "good": "3",
+            "bad": "6"
+        }
+    },
+    {
+        "model": "record.record",
+        "pk": 10,
+        "fields": {
+            "exercise": "푸쉬업",
+            "count": "34",
+            "time": "65",
+            "date": "2023-01-16",
+            "good": "3",
+            "bad": "0"
+        }
+    },
+    {
+        "model": "record.record",
+        "pk": 11,
+        "fields": {
+            "exercise": "스쿼트",
+            "count": "12",
+            "time": "31",
+            "date": "2023-01-16",
+            "good": "0",
+            "bad": "0"
+        }
+    },
+    {
+        "model": "record.record",
+        "pk": 12,
+        "fields": {
+            "exercise": "스쿼트",
+            "count": "3",
+            "time": "12",
+            "date": "2023-01-18",
+            "good": "3",
+            "bad": "5"
+        }
+    },
+    {
+        "model": "record.record",
+        "pk": 13,
+        "fields": {
+            "exercise": "푸쉬업",
+            "count": "24",
+            "time": "43",
+            "date": "2023-01-18",
+            "good": "9",
+            "bad": "3"
+        }
+    },
+    {
+        "model": "record.record",
+        "pk": 14,
+        "fields": {
+            "exercise": "푸쉬업",
+            "count": "12",
+            "time": "22",
+            "date": "2023-01-19",
+            "good": "1",
+            "bad": "0"
+        }
+    },
+    {
+        "model": "record.record",
+        "pk": 15,
+        "fields": {
+            "exercise": "스쿼트",
+            "count": "25",
+            "time": "42",
+            "date": "2023-01-19",
+            "good": "4",
+            "bad": "3"
+        }
+    },
+    {
+        "model": "record.record",
+        "pk": 16,
+        "fields": {
+            "exercise": "스쿼트",
+            "count": "58",
+            "time": "97",
+            "date": "2023-01-19",
+            "good": "9",
+            "bad": "11"
+        }
+    },
+    {
+        "model": "record.record",
+        "pk": 17,
+        "fields": {
+            "exercise": "푸쉬업",
+            "count": "39",
+            "time": "102",
+            "date": "2023-01-22",
+            "good": "8",
+            "bad": "1"
+        }
+    },
+    {
+        "model": "record.record",
+        "pk": 18,
+        "fields": {
+            "exercise": "스쿼트",
+            "count": "59",
+            "time": "121",
+            "date": "2023-01-22",
+            "good": "24",
+            "bad": "5"
+        }
+    },
+    {
+        "model": "record.record",
+        "pk": 19,
+        "fields": {
+            "exercise": "푸쉬업",
+            "count": "38",
+            "time": "74",
+            "date": "2023-01-23",
+            "good": "10",
+            "bad": "5"
+        }
+    },
+    {
+        "model": "record.record",
+        "pk": 20,
+        "fields": {
+            "exercise": "스쿼트",
+            "count": "15",
+            "time": "23",
+            "date": "2023-01-23",
+            "good": "2",
+            "bad": "1"
+        }
+    }
+]
+    

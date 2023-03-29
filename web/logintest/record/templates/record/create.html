@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+
+
+{% block contents %}
+
+  <h1 class="text-center">운동 기록</h1>
+  {% comment %} <form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit">
+  </form>
+  <hr>
+  <a href="{% url 'record:main' %}">[main]</a> {% endcomment %}
+  
+<div class="container" style="width: 25%;">
+
+  <form method="post" class="post-form my-3">
+      {% csrf_token %}
+     
+      {% if form.errors %}
+          <div class="alert alert-danger" role="alert">
+          {% for field in form %}
+              {% if field.errors %}
+              <strong>{{ field.label }}</strong>
+              {{ field.errors }}
+              {% endif %}
+          {% endfor %}
+          </div>
+      {% endif %}
+
+
+      <div class="form-group">
+        <label for="exercise">운동</label>
+        {% comment %} <input type="text" class="form-control" name="exercise" id="exercise"
+        value="{{ form.exercise.value|default_if_none:'' }}"> {% endcomment %}
+        <select class="form-control" name="exercise" id="exercise"
+        value="{{ form.exercise.value|default_if_none:'' }}">
+  
+          <option>스쿼트</option>
+          <option>푸쉬업</option>
+          <option>런지</option>
+          {% comment %} <option>4</option>
+          <option>5</option> {% endcomment %}
+        </select>
+          {% comment %} <label for="exercise">운동</label>
+          <input type="text" class="form-control" name="exercise" id="exercise"
+                 value="{{ form.exercise.value|default_if_none:'' }}"> {% endcomment %}
+      </div>
+      <div class="form-group">
+          <label for="count">횟수</label>
+          <textarea class="form-control" name="count"
+                    id="count" rows="1">{{ form.count.value|default_if_none:'' }}</textarea>
+      </div>
+ <div class="form-group">
+        <label for="time">시간</label>
+        <textarea class="form-control" name="time"
+                  id="time" rows="1">{{ form.time.value|default_if_none:'' }}</textarea>
+      </div>
+      <div class="form-group">
+        <label for="date">날짜</label>
+        <input type="date" class="form-control" name="date"
+        id="date">
+        {% comment %} <textarea class="form-control" name="date"
+                  id="date" rows="1">{{ form.date.value|default_if_none:'' }}</textarea> {% endcomment %}
+    </div>
+      <div class="form-group">
+        <label for="good">good</label>
+        <textarea class="form-control" name="good"
+                  id="good" rows="1">{{ form.good.value|default_if_none:'' }}</textarea>
+      </div>
+  <div class="form-group">
+    <label for="bad">bad</label>
+    <textarea class="form-control" name="bad"
+              id="bad" rows="1">{{ form.bad.value|default_if_none:'' }}</textarea>
+</div>
+<input type="submit" class="btn btn-outline-secondary">
+</form>
+</div>
+
+{% endblock %}
+
+
+

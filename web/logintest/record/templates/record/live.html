@@ -1,0 +1,73 @@
+{% extends 'base.html' %} 
+{%load static%}
+
+{% block contents %}
+
+<h4>Camera Live</h3>
+<button class="btn btn-outline-secondary" onclick="imgToggle()">영상</button>
+<br>
+<!-- Your Connection -->
+
+
+<img
+id="img1"
+style="-webkit-user-select: none"
+src="{% url 'record:stream2' %}"
+/>
+<br>
+<br>
+<div id="goodbad">
+  {% comment %} <h4>time : {{bad}}</h4> {% endcomment %}
+  <h2>SQUAT</h2>
+  <h4>Good : {{camgoods}}</h4>
+  <h4>Bad : {{cambads}}</h4>
+  {% comment %} <h5>list : {{camlists}}</h5> {% endcomment %}
+<br>
+  {% comment %} <h4>time : {{bad}}</h4> {% endcomment %}
+  {% comment %} <h2>PUSHUP</h2>
+  <h4>Good : {{camgoodp}}</h4>
+  <h4>Bad : {{cambadp}}</h4> {% endcomment %}
+</div>
+
+<div id="times">
+
+</div>
+<a class="btn btn-outline-secondary" href="{% url 'record:exfront' user.id %}">스쿼트 시작</a>
+<a class="btn btn-outline-secondary" href="{% url 'record:exside' user.id %}">푸쉬업 시작</a>
+<a class="btn btn-outline-secondary" href="{% url 'record:finish' user.id %}">운동종료</a>
+<br><br>
+{% endblock contents %} 
+
+
+{% block script %}
+<script>
+  setInterval(function () {
+    $("#goodbad").load(location.href + " #goodbad");
+  }, 500);
+
+  {% comment %} setInterval(function () {
+    $("#times").load(location.href + " #times");
+  }, 1000);
+   {% endcomment %}
+  {% comment %} setInterval(function () {
+    $("#position").load(location.href + " #position");
+  }, 500); {% endcomment %}
+
+  var cnt = 1;
+  function imgToggle() {
+    var img1 = document.getElementById("img1");
+    if (cnt % 2 == 1) {
+      img1.src = "{% url 'record:stream2' %}";
+    } else {
+      img1.src = "{% static 'mainimage.png' %}";
+    }
+    cnt++; // cnt 변수 1씩 증가 시키기
+  }
+
+</script>
+{% endblock script %}
+
+
+
+
+

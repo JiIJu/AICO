@@ -1,0 +1,39 @@
+카카오 RESTAPI키  36d4c05e8f514afde745ddbb78807329
+
+
+
+pip install django-allauth
+
+
+    # allauth
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.kakao',
+
+
+path('records/', include('records.urls')),
+
+LANGUAGE_CODE = 'ko-kr'
+
+TIME_ZONE = 'Asia/Seoul'
+
+[BASE_DIR / 'templates']
+
+
+
+urls.py
+from django.urls import path
+from . import views
+
+app_name = 'records'
+
+urlpatterns = [
+    path('', views.index, name='index'),
+]
+
+http://127.0.0.1:8000/accounts/kakao/login/callback/
+http://127.0.0.1:8000/oauth
+http://127.0.0.1:8000/record/success/
